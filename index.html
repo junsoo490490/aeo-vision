@@ -172,7 +172,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-s
   <div class="wrap" style="text-align:center">
     <div class="sec-label">Free Check</div>
     <h2>무료 AEO 진단</h2>
-    <p class="sec-desc" style="margin:0 auto 40px">사이트 주소를 입력하면 AI 검색 최적화 상태를 즉시 분석해 드립니다.<br>스키마, 메타태그, AI 크롤러 접근성, llms.txt 등 11개 항목을 검사합니다.</p>
+    <p class="sec-desc" style="margin:0 auto 40px">사이트 주소를 입력하면 GEOCheck 진단 엔진이 AI 검색 최적화 상태를 즉시 분석합니다.<br>AI 접근성, 구조화 데이터, 콘텐츠 구조, GEO 신호 등 8개 카테고리 15개 항목을 검사합니다.</p>
     <form class="diag-form" id="diagForm">
       <input type="text" id="diagUrl" placeholder="example.com" autocomplete="url" required>
       <button type="submit" class="btn btn-primary" id="diagBtn">진단하기</button>
@@ -302,18 +302,24 @@ document.getElementById('diagForm').addEventListener('submit', async function(e)
   st.textContent = '사이트를 검사하고 있습니다. 잠시만 기다려 주세요 (최대 20초)';
   box.style.display = 'none';
   try{
-    var r = await fetch('/api/diagnose?url=' + encodeURIComponent(url));
+    var r = await fetch('/api/audit?url=' + encodeURIComponent(url));
     var d = await r.json();
-    if(d.error){ st.textContent = '⚠️ ' + d.error; return; }
+    if(d.error || d.ok === false){ st.textContent = '⚠️ ' + (d.error || '사이트에 접근할 수 없습니다'); return; }
     st.textContent = '';
     document.getElementById('scoreNum').textContent = d.score;
     document.getElementById('scoreCircle').style.setProperty('--p', d.score);
-    document.getElementById('scoreGrade').textContent = 'AEO 준비도: ' + d.grade;
+    document.getElementById('scoreGrade').textContent = 'AEO 준비도: ' + d.grade + '등급 (' + d.score + '점)';
     document.getElementById('scoreUrl').textContent = d.url;
-    var icons = {pass:'✓', warn:'!', fail:'✗'};
-    document.getElementById('diagItems').innerHTML = d.items.map(function(it){
-      return '<div class="diag-item ' + it.status + '"><div class="mark">' + icons[it.status] + '</div><div><h4>' + it.label + '</h4><div class="detail">' + it.detail + '</div><div class="advice">💡 ' + it.advice + '</div></div></div>';
-    }).join('');
+    var esc = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
+    var html = '', lastCat = '';
+    d.checks.forEach(function(c){
+      if(c.category !== lastCat){
+        html += '<div style="margin:22px 0 10px;font-weight:700;color:var(--accent);font-size:.9rem;letter-spacing:.08em">' + esc(c.category) + '</div>';
+        lastCat = c.category;
+      }
+      html += '<div class="diag-item ' + (c.passed ? 'pass' : 'fail') + '"><div class="mark">' + (c.passed ? '✓' : '✗') + '</div><div><h4>' + esc(c.name) + '</h4><div class="detail">' + esc(c.detail) + '</div>' + (c.fix ? '<div class="advice">💡 ' + esc(c.fix) + '</div>' : '') + '</div></div>';
+    });
+    document.getElementById('diagItems').innerHTML = html;
     box.style.display = 'block';
   }catch(err){
     st.textContent = '⚠️ 분석 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
