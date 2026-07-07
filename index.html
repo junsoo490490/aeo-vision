@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO Vision — AI 검색 시대의 최적화</title>
+<meta name="description" content="AEO Vision은 ChatGPT, Claude, Perplexity 등 AI 답변 엔진에서 브랜드가 인용되도록 만드는 AEO·GEO 최적화 서비스입니다.">
+<meta property="og:title" content="AEO Vision — AI 검색 시대의 최적화">
+<meta property="og:description" content="AI가 답하는 시대, 검색 순위가 아니라 AI의 답변 속에 들어가야 합니다.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AEO Vision",
+  "description": "AEO(Answer Engine Optimization) 및 GEO(Generative Engine Optimization) 전문 서비스"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "AEO란 무엇인가요?", "acceptedAnswer": {"@type": "Answer", "text": "AEO(Answer Engine Optimization)는 ChatGPT, Perplexity 같은 AI 답변 엔진이 질문에 답할 때 우리 브랜드와 콘텐츠를 인용하도록 최적화하는 작업입니다."}},
+    {"@type": "Question", "name": "GEO는 SEO와 무엇이 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "SEO는 검색 결과 순위를 높이는 것이고, GEO(Generative Engine Optimization)는 생성형 AI가 만들어내는 답변 안에 브랜드가 언급되도록 만드는 것입니다. 클릭이 아니라 인용이 목표입니다."}},
+    {"@type": "Question", "name": "효과는 언제부터 나타나나요?", "acceptedAnswer": {"@type": "Answer", "text": "콘텐츠 구조화와 스키마 적용 후 보통 4~8주 내에 AI 답변 인용률 변화가 측정되기 시작합니다."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#07090f; --bg2:#0d1118; --card:#11161f;
+  --text:#e8ecf4; --muted:#8b94a7; --line:rgba(255,255,255,.08);
+  --accent:#5b8cff; --accent2:#8b5bff; --grad:linear-gradient(120deg,#5b8cff,#8b5bff);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,9,15,.7);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:28px;font-size:.92rem;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.btn{display:inline-block;padding:12px 26px;border-radius:10px;font-weight:600;font-size:.95rem;transition:.2s}
+.btn-primary{background:var(--grad);color:#fff}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent)}
+.btn-sm{padding:9px 18px;font-size:.88rem}
+/* hero */
+.hero{padding:170px 0 110px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(91,140,255,.16),transparent 65%);pointer-events:none}
+.badge{display:inline-block;padding:6px 16px;border:1px solid var(--line);border-radius:999px;font-size:.82rem;color:var(--muted);margin-bottom:26px}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.18}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;margin:24px auto 40px;color:var(--muted);font-size:1.12rem}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:90px 0 0}
+.stat{background:var(--bg2);padding:34px 20px;text-align:center}
+.stat b{display:block;font-size:2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--muted);font-size:.9rem}
+/* sections */
+section{padding:100px 0}
+.sec-label{color:var(--accent);font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+h2{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.3;margin-bottom:16px}
+.sec-desc{color:var(--muted);max-width:560px;font-size:1.05rem;margin-bottom:56px}
+/* cards */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;transition:.25s}
+.card:hover{border-color:rgba(91,140,255,.4);transform:translateY(-3px)}
+.card .ico{width:44px;height:44px;border-radius:11px;background:rgba(91,140,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:18px}
+.card h3{font-size:1.12rem;font-weight:700;margin-bottom:10px}
+.card p{color:var(--muted);font-size:.95rem}
+/* steps */
+.step{display:flex;gap:22px;padding:28px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.step .num{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem}
+.step h3{font-size:1.1rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.95rem}
+/* pricing */
+.price-card{position:relative;display:flex;flex-direction:column}
+.price-card.featured{border-color:var(--accent);background:linear-gradient(180deg,rgba(91,140,255,.08),var(--card))}
+.tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);padding:4px 14px;border-radius:999px;font-size:.75rem;font-weight:700}
+.price-card .plan{font-weight:700;color:var(--muted);font-size:.9rem;letter-spacing:.06em;text-transform:uppercase}
+.price-card .amount{font-size:2.1rem;font-weight:800;margin:12px 0 4px}
+.price-card .amount small{font-size:.95rem;font-weight:500;color:var(--muted)}
+.price-card ul{list-style:none;margin:22px 0 30px;flex:1}
+.price-card li{padding:7px 0;color:var(--muted);font-size:.93rem}
+.price-card li::before{content:"✓";color:var(--accent);font-weight:700;margin-right:10px}
+/* faq */
+details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card)}
+summary{padding:20px 24px;cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";color:var(--accent);font-size:1.3rem;font-weight:400}
+details[open] summary::after{content:"−"}
+details p{padding:0 24px 20px;color:var(--muted);font-size:.95rem}
+/* cta */
+.cta-box{text-align:center;padding:80px 24px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(ellipse at top,rgba(139,91,255,.12),var(--bg2) 70%)}
+.cta-box h2{margin-bottom:14px}
+.cta-box p{color:var(--muted);margin-bottom:36px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.88rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:820px){
+  .grid3,.grid2{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .nav-links{display:none}
+  section{padding:70px 0}
+  .hero{padding:130px 0 80px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">AEO <span>Vision</span></a>
+    <div class="nav-links">
+      <a href="#why">왜 AEO인가</a>
+      <a href="#features">서비스</a>
+      <a href="#process">진행 방식</a>
+      <a href="#pricing">가격</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#contact" class="btn btn-primary btn-sm">무료 진단 받기</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge">AEO · GEO 최적화 전문</div>
+    <h1>검색 순위가 아니라,<br><em>AI의 답변</em> 속에 들어가세요</h1>
+    <p>사람들은 이제 검색하지 않고 AI에게 묻습니다. ChatGPT, Claude, Perplexity가 당신의 브랜드를 인용하도록 — AEO Vision이 만들어 드립니다.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">무료 AEO 진단 받기</a>
+      <a href="#why" class="btn btn-ghost">더 알아보기</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>60%+</b><span>제로클릭으로 끝나는 검색</span></div>
+      <div class="stat"><b>10억+</b><span>주간 AI 챗봇 질문 수</span></div>
+      <div class="stat"><b>4~8주</b><span>인용률 변화 측정 시작</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-label">Why AEO</div>
+    <h2>검색의 규칙이 바뀌었습니다</h2>
+    <p class="sec-desc">10개의 파란 링크는 사라지고, AI가 내놓는 하나의 답이 남았습니다. 그 답 안에 없으면, 존재하지 않는 것과 같습니다.</p>
+    <div class="grid3">
+      <div class="card"><div class="ico">🔍</div><h3>클릭 없는 검색</h3><p>사용자는 AI의 답변만 읽고 떠납니다. 순위 1등이어도 답변에 인용되지 않으면 트래픽도, 신뢰도 얻지 못합니다.</p></div>
+      <div class="card"><div class="ico">🤖</div><h3>AI가 고르는 브랜드</h3><p>"가장 좋은 ○○ 추천해줘"라는 질문에 AI가 언급하는 브랜드는 정해져 있습니다. 그 목록에 들어가는 게 새로운 마케팅입니다.</p></div>
+      <div class="card"><div class="ico">📉</div><h3>기존 SEO의 한계</h3><p>키워드와 백링크만으로는 부족합니다. AI는 구조화된 데이터, 명확한 답변, 신뢰할 수 있는 출처를 원합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-label">Services</div>
+    <h2>AEO Vision이 하는 일</h2>
+    <p class="sec-desc">진단부터 콘텐츠 구조화, 인용률 모니터링까지 — AI 검색 최적화의 전 과정을 담당합니다.</p>
+    <div class="grid3">
+      <div class="card"><div class="ico">📊</div><h3>AI 가시성 진단</h3><p>주요 AI 엔진(ChatGPT, Claude, Perplexity, Gemini)에서 브랜드가 어떻게 언급되는지 측정하고 경쟁사와 비교합니다.</p></div>
+      <div class="card"><div class="ico">🧱</div><h3>콘텐츠 구조화</h3><p>AI가 읽고 인용하기 좋은 형태로 콘텐츠를 재설계합니다. 질문-답변 구조, 명확한 팩트, 요약 블록을 적용합니다.</p></div>
+      <div class="card"><div class="ico">🏷️</div><h3>스키마 & 기술 최적화</h3><p>Schema.org 구조화 데이터, llms.txt, 크롤러 접근성 등 AI 엔진이 요구하는 기술 기반을 구축합니다.</p></div>
+      <div class="card"><div class="ico">✍️</div><h3>GEO 콘텐츠 제작</h3><p>생성형 엔진이 답변 소스로 선택할 만한 권위 있는 콘텐츠를 기획·제작합니다.</p></div>
+      <div class="card"><div class="ico">📈</div><h3>인용률 모니터링</h3><p>AI 답변 속 브랜드 언급을 지속 추적하고, 월간 리포트로 변화를 보여드립니다.</p></div>
+      <div class="card"><div class="ico">🧭</div><h3>전략 컨설팅</h3><p>업종·경쟁 환경에 맞춘 AEO 로드맵을 설계하고 우선순위를 잡아드립니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-label">Process</div>
+    <h2>이렇게 진행됩니다</h2>
+    <p class="sec-desc">4단계로 명확하게. 각 단계마다 측정 가능한 결과물을 드립니다.</p>
+    <div class="step"><div class="num">1</div><div><h3>무료 진단</h3><p>주요 AI 엔진에서 브랜드 언급 현황을 측정한 진단 리포트를 무료로 제공합니다.</p></div></div>
+    <div class="step"><div class="num">2</div><div><h3>전략 수립</h3><p>타겟 질문(쿼리) 목록과 우선순위, 콘텐츠·기술 개선 로드맵을 설계합니다.</p></div></div>
+    <div class="step"><div class="num">3</div><div><h3>최적화 실행</h3><p>콘텐츠 구조화, 스키마 적용, GEO 콘텐츠 제작을 실행합니다.</p></div></div>
+    <div class="step"><div class="num">4</div><div><h3>측정 & 개선</h3><p>인용률 변화를 매월 추적하고 데이터 기반으로 전략을 반복 개선합니다.</p></div></div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-label">Pricing</div>
+    <h2>플랜</h2>
+    <p class="sec-desc">규모와 목표에 맞게 선택하세요. 모든 플랜은 무료 진단부터 시작합니다.</p>
+    <div class="grid3">
+      <div class="card price-card">
+        <div class="plan">Starter</div>
+        <div class="amount">문의<small> /월</small></div>
+        <ul><li>AI 가시성 진단 리포트</li><li>핵심 페이지 10개 최적화</li><li>기본 스키마 적용</li><li>월간 리포트</li></ul>
+        <a href="#contact" class="btn btn-ghost" style="text-align:center">상담 신청</a>
+      </div>
+      <div class="card price-card featured">
+        <div class="tag">추천</div>
+        <div class="plan">Growth</div>
+        <div class="amount">문의<small> /월</small></div>
+        <ul><li>Starter 전체 포함</li><li>GEO 콘텐츠 월 4건 제작</li><li>경쟁사 인용률 비교 분석</li><li>llms.txt & 기술 최적화</li><li>격주 전략 미팅</li></ul>
+        <a href="#contact" class="btn btn-primary" style="text-align:center">상담 신청</a>
+      </div>
+      <div class="card price-card">
+        <div class="plan">Enterprise</div>
+        <div class="amount">맞춤<small> 견적</small></div>
+        <ul><li>Growth 전체 포함</li><li>다국어 · 다브랜드 대응</li><li>전담 컨설턴트 배정</li><li>사내 팀 교육 프로그램</li></ul>
+        <a href="#contact" class="btn btn-ghost" style="text-align:center">상담 신청</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-label">FAQ</div>
+    <h2>자주 묻는 질문</h2>
+    <p class="sec-desc"></p>
+    <details open><summary>AEO란 무엇인가요?</summary><p>AEO(Answer Engine Optimization)는 ChatGPT, Perplexity 같은 AI 답변 엔진이 질문에 답할 때 우리 브랜드와 콘텐츠를 인용하도록 최적화하는 작업입니다.</p></details>
+    <details><summary>GEO는 SEO와 무엇이 다른가요?</summary><p>SEO는 검색 결과에서 순위를 높이는 것이고, GEO(Generative Engine Optimization)는 생성형 AI가 만들어내는 답변 안에 브랜드가 언급되도록 만드는 것입니다. 클릭이 아니라 인용이 목표입니다.</p></details>
+    <details><summary>효과는 언제부터 나타나나요?</summary><p>콘텐츠 구조화와 스키마 적용 후 보통 4~8주 내에 AI 답변 인용률 변화가 측정되기 시작합니다. 경쟁 강도와 도메인 신뢰도에 따라 차이가 있습니다.</p></details>
+    <details><summary>기존 SEO 작업과 충돌하지 않나요?</summary><p>아니요. AEO는 SEO 위에 쌓는 작업입니다. 구조화된 콘텐츠와 스키마는 구글 검색 순위에도 긍정적으로 작용합니다.</p></details>
+    <details><summary>성과는 어떻게 측정하나요?</summary><p>주요 AI 엔진에 타겟 질문을 정기적으로 질의해 브랜드 언급·인용 여부를 추적하고, 인용률·점유율 변화를 월간 리포트로 제공합니다.</p></details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>지금 무료 진단부터 시작하세요</h2>
+      <p>AI는 지금 이 순간에도 당신의 경쟁사를 답변하고 있을지 모릅니다.<br>브랜드의 AI 가시성, 무료로 측정해 드립니다.</p>
+      <a href="mailto:contact@aeovision.ai?subject=무료 AEO 진단 신청" class="btn btn-primary">무료 AEO 진단 신청 →</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <div>© 2026 AEO Vision. All rights reserved.</div>
+    <div>contact@aeovision.ai</div>
+  </footer>
+</div>
+
+</body>
+</html>
