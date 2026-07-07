@@ -104,6 +104,28 @@ details p{padding:0 24px 20px;color:var(--muted);font-size:.95rem}
 .cta-box h2{margin-bottom:14px}
 .cta-box p{color:var(--muted);margin-bottom:36px}
 footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.88rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+/* diagnose */
+.diag-form{display:flex;gap:12px;max-width:640px;margin:0 auto;flex-wrap:wrap}
+.diag-form input{flex:1;min-width:240px;padding:14px 18px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:1rem;outline:none}
+.diag-form input:focus{border-color:var(--accent)}
+.diag-status{text-align:center;color:var(--muted);margin-top:24px;min-height:24px}
+#diagResult{display:none;max-width:760px;margin:40px auto 0}
+.score-wrap{display:flex;align-items:center;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;margin-bottom:20px;flex-wrap:wrap}
+.score-circle{width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;background:conic-gradient(var(--accent) calc(var(--p)*1%),rgba(255,255,255,.07) 0);position:relative}
+.score-circle::before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--card)}
+.score-circle b{position:relative;font-size:1.9rem;font-weight:800}
+.score-circle span{position:relative;font-size:.75rem;color:var(--muted)}
+.score-info h3{font-size:1.25rem;margin-bottom:6px}
+.score-info p{color:var(--muted);font-size:.92rem;word-break:break-all}
+.diag-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+.diag-item .mark{flex-shrink:0;font-weight:800;width:22px;text-align:center}
+.diag-item.pass .mark{color:#4ade80}
+.diag-item.warn .mark{color:#fbbf24}
+.diag-item.fail .mark{color:#f87171}
+.diag-item h4{font-size:.98rem;margin-bottom:2px}
+.diag-item .detail{color:var(--muted);font-size:.88rem}
+.diag-item .advice{color:var(--muted);font-size:.85rem;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.diag-item.pass .advice{display:none}
 @media(max-width:820px){
   .grid3,.grid2{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr}
@@ -125,7 +147,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-s
       <a href="#pricing">가격</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="#contact" class="btn btn-primary btn-sm">무료 진단 받기</a>
+    <a href="#diagnose" class="btn btn-primary btn-sm">무료 진단 받기</a>
   </div>
 </nav>
 
@@ -135,7 +157,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-s
     <h1>검색 순위가 아니라,<br><em>AI의 답변</em> 속에 들어가세요</h1>
     <p>사람들은 이제 검색하지 않고 AI에게 묻습니다. ChatGPT, Claude, Perplexity가 당신의 브랜드를 인용하도록 — AEO Vision이 만들어 드립니다.</p>
     <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary">무료 AEO 진단 받기</a>
+      <a href="#diagnose" class="btn btn-primary">무료 AEO 진단 받기</a>
       <a href="#why" class="btn btn-ghost">더 알아보기</a>
     </div>
     <div class="stats">
@@ -145,6 +167,30 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-s
     </div>
   </div>
 </header>
+
+<section id="diagnose" style="background:var(--bg2)">
+  <div class="wrap" style="text-align:center">
+    <div class="sec-label">Free Check</div>
+    <h2>무료 AEO 진단</h2>
+    <p class="sec-desc" style="margin:0 auto 40px">사이트 주소를 입력하면 AI 검색 최적화 상태를 즉시 분석해 드립니다.<br>스키마, 메타태그, AI 크롤러 접근성, llms.txt 등 11개 항목을 검사합니다.</p>
+    <form class="diag-form" id="diagForm">
+      <input type="text" id="diagUrl" placeholder="example.com" autocomplete="url" required>
+      <button type="submit" class="btn btn-primary" id="diagBtn">진단하기</button>
+    </form>
+    <div class="diag-status" id="diagStatus"></div>
+    <div id="diagResult" style="text-align:left">
+      <div class="score-wrap">
+        <div class="score-circle" id="scoreCircle"><b id="scoreNum">0</b><span>/ 100</span></div>
+        <div class="score-info">
+          <h3 id="scoreGrade"></h3>
+          <p id="scoreUrl"></p>
+          <p style="margin-top:8px">전문가와 함께 개선하고 싶다면 <a href="#contact" style="color:var(--accent)">상담을 신청</a>하세요.</p>
+        </div>
+      </div>
+      <div id="diagItems"></div>
+    </div>
+  </div>
+</section>
 
 <section id="why">
   <div class="wrap">
@@ -232,9 +278,9 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-s
 <section id="contact">
   <div class="wrap">
     <div class="cta-box">
-      <h2>지금 무료 진단부터 시작하세요</h2>
-      <p>AI는 지금 이 순간에도 당신의 경쟁사를 답변하고 있을지 모릅니다.<br>브랜드의 AI 가시성, 무료로 측정해 드립니다.</p>
-      <a href="mailto:contact@aeovision.ai?subject=무료 AEO 진단 신청" class="btn btn-primary">무료 AEO 진단 신청 →</a>
+      <h2>전문가와 함께 개선하세요</h2>
+      <p>진단 결과를 바탕으로 맞춤 전략을 제안해 드립니다.<br>AI는 지금 이 순간에도 당신의 경쟁사를 답변하고 있을지 모릅니다.</p>
+      <a href="mailto:contact@aeovision.ai?subject=AEO 상담 신청" class="btn btn-primary">상담 신청 →</a>
     </div>
   </div>
 </section>
@@ -246,5 +292,35 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-s
   </footer>
 </div>
 
+<script>
+document.getElementById('diagForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var url = document.getElementById('diagUrl').value.trim();
+  if(!url) return;
+  var btn = document.getElementById('diagBtn'), st = document.getElementById('diagStatus'), box = document.getElementById('diagResult');
+  btn.disabled = true; btn.textContent = '분석 중...';
+  st.textContent = '사이트를 검사하고 있습니다. 잠시만 기다려 주세요 (최대 20초)';
+  box.style.display = 'none';
+  try{
+    var r = await fetch('/api/diagnose?url=' + encodeURIComponent(url));
+    var d = await r.json();
+    if(d.error){ st.textContent = '⚠️ ' + d.error; return; }
+    st.textContent = '';
+    document.getElementById('scoreNum').textContent = d.score;
+    document.getElementById('scoreCircle').style.setProperty('--p', d.score);
+    document.getElementById('scoreGrade').textContent = 'AEO 준비도: ' + d.grade;
+    document.getElementById('scoreUrl').textContent = d.url;
+    var icons = {pass:'✓', warn:'!', fail:'✗'};
+    document.getElementById('diagItems').innerHTML = d.items.map(function(it){
+      return '<div class="diag-item ' + it.status + '"><div class="mark">' + icons[it.status] + '</div><div><h4>' + it.label + '</h4><div class="detail">' + it.detail + '</div><div class="advice">💡 ' + it.advice + '</div></div></div>';
+    }).join('');
+    box.style.display = 'block';
+  }catch(err){
+    st.textContent = '⚠️ 분석 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+  }finally{
+    btn.disabled = false; btn.textContent = '진단하기';
+  }
+});
+</script>
 </body>
 </html>
